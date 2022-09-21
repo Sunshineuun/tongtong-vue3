@@ -6,6 +6,7 @@
       default-active="2"
       text-color="#fff"
       router
+      unique-opened
   >
     <el-sub-menu
         :index="item.id"
@@ -34,11 +35,64 @@ const menusList = ref([
       {
         authName: '用户列表',
         id: 1,
-        path: 'userList'
+        path: 'users'
       }
     ]
-  }, {
-    authName: '权限管理'
+  },
+  {
+    authName: '权限管理',
+    children: [
+      {
+        authName: '角色列表',
+        id: 2,
+        path: 'rights'
+      },
+      {
+        authName: '权限列表',
+        id: 3,
+        path: 'roles'
+      }
+    ]
+  },
+  {
+    authName: '商品管理',
+    children: [
+      {
+        authName: '商品列表',
+        id: 4,
+        path: 'goods'
+      },
+      {
+        authName: '分类参数',
+        id: 5,
+        path: 'params'
+      },
+      {
+        authName: '商品分类',
+        id: 6,
+        path: 'categories'
+      }
+    ]
+  },
+  {
+    authName: '订单管理',
+    children: [
+      {
+        authName: '订单列表',
+        id: 7,
+        path: 'orders'
+      },
+    ]
+  },
+  {
+    authName: '数据统计',
+    children: [
+      {
+        authName: '数据统计',
+        id: 7,
+        path: 'reports'
+      },
+    ]
   }
 ])
 const initMenusList = async () => {
