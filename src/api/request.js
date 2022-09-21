@@ -6,7 +6,17 @@ const service = axios.create({
     timeout: 5000
 })
 
-// 请求拦截器
+// 请求拦截器，将结果token放到header上
+service.interceptors.request.use(
+    config => {
+        config.headers.Authorizatioin = localStorage.getItem('token');
+        return config
+    },
+    (error => {
+        return Promise.reject(new Error(error))
+    }))
+
+// 响应拦截器
 service.interceptors.response.use((response) => {
         console.log(response)
         const {data, meta} = response.data;
