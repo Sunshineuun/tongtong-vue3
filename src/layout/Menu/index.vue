@@ -3,10 +3,12 @@
       active-text-color="#ffffff"
       background-color="#304156"
       class="el-menu-vertical-demo"
-      default-active="2"
+      default-active="/users"
       text-color="#fff"
       router
       unique-opened
+      @open="handleOpen"
+      @close="handleClose"
   >
     <el-sub-menu
         :index="item.id"
@@ -30,6 +32,7 @@ import {ref} from "vue";
 
 const menusList = ref([
   {
+    id: 10,
     authName: '用户管理',
     children: [
       {
@@ -40,6 +43,7 @@ const menusList = ref([
     ]
   },
   {
+    id: 20,
     authName: '权限管理',
     children: [
       {
@@ -55,6 +59,7 @@ const menusList = ref([
     ]
   },
   {
+    id: 30,
     authName: '商品管理',
     children: [
       {
@@ -75,6 +80,7 @@ const menusList = ref([
     ]
   },
   {
+    id: 40,
     authName: '订单管理',
     children: [
       {
@@ -98,6 +104,12 @@ const menusList = ref([
 const initMenusList = async () => {
   const res = await menuList()
   console.log(res);
+}
+const handleOpen = (key, keyPath) => {
+  console.log(key, keyPath)
+}
+const handleClose = (key, keyPath) => {
+  console.log(key, keyPath)
 }
 
 initMenusList();
