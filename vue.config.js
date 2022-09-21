@@ -77,6 +77,17 @@ module.exports = {
                     '^/api': ''
                 }
             }
+        },
+    },
+    css: {
+        loaderOptions: {
+            sass: {
+                // 8版本用prependData:
+                additionalData: `
+                          @import "@/styles/variables.scss";
+                          @import "@/styles/mixin.scss";
+                        `
+            }
         }
     }
 }
