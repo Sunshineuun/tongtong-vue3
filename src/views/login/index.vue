@@ -19,6 +19,8 @@
 
 <script setup>
 import {ref} from "vue";
+import {login} from "@/api/login";
+
 
 const form = ref({
   username: '',
@@ -45,9 +47,10 @@ const rules = ref({
 const formRef = ref(null);
 const handleLogin = () => {
   // 提交增加表单验证
-  formRef.value.validate((valid) => {
+  formRef.value.validate(async (valid) => {
     if (valid) {
       alert('submit');
+      await login(form.value)
     } else {
       console.log('error submit!!')
       return false
