@@ -22,8 +22,9 @@
 
 <script setup>
 import {ref} from "vue";
-import {login} from "@/api/login";
+import {useStore} from "vuex";
 
+const store = useStore();
 
 const form = ref({
   username: '',
@@ -52,8 +53,8 @@ const handleLogin = () => {
   // 提交增加表单验证
   formRef.value.validate(async (valid) => {
     if (valid) {
-      alert('submit');
-      await login(form.value)
+      //await login(form.value)
+      store.dispatch('app/login', form.value)
     } else {
       console.log('error submit!!')
       return false
