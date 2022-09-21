@@ -10,7 +10,10 @@
       </el-form-item>
       <el-form-item prop="password">
         <svg-icon icon="password" class="svg-container"></svg-icon>
-        <el-input v-model="form.password"/>
+        <el-input v-model="form.password" :type="passwordType"/>
+        <svg-icon
+            :icon="passwordType=== 'password' ? 'eye' : 'eye-open'"
+            @click="changeType"></svg-icon>
       </el-form-item>
       <el-button type="primary" class="login-button" @click="handleLogin">登录</el-button>
     </el-form>
@@ -56,6 +59,16 @@ const handleLogin = () => {
       return false
     }
   })
+}
+
+// 控制密码已明文还是暗文展示
+const passwordType = ref("password")
+const changeType = () => {
+  if (passwordType.value === 'password') {
+    passwordType.value = 'text';
+  } else {
+    passwordType.value = 'password'
+  }
 }
 </script>
 
