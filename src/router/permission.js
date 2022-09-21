@@ -4,8 +4,10 @@ import store from '@/store'
 
 const whiteList = ['/login']
 router.beforeEach((to, from, next) => {
-    console.log(to.path)
-    if (store.getters.token) {
+    console.log(store.getters.token)
+    // const token = window.localStorage.getItem('token')
+    const token = store.getters.token
+    if (token) {
         if (to.path === '/login') {
             next('/')
         } else {
