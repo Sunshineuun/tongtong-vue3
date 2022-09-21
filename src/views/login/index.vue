@@ -12,7 +12,7 @@
         <svg-icon icon="password" class="svg-container"></svg-icon>
         <el-input v-model="form.password"/>
       </el-form-item>
-      <el-button type="primary" class="login-button">登录</el-button>
+      <el-button type="primary" class="login-button" @click="handleLogin">登录</el-button>
     </el-form>
   </div>
 </template>
@@ -41,6 +41,19 @@ const rules = ref({
     },
   ]
 })
+
+const formRef = ref(null);
+const handleLogin = () => {
+  // 提交增加表单验证
+  formRef.value.validate((valid) => {
+    if (valid) {
+      alert('submit');
+    } else {
+      console.log('error submit!!')
+      return false
+    }
+  })
+}
 </script>
 
 <style lang="scss" scoped>
@@ -69,9 +82,10 @@ $cursor: #fff;
       border-radius: 5px;
       color: #454545;
     }
+
     /*搜索input框，这里解决了出现白框的情况 */
     ::v-deep(.el-input__wrapper) {
-      background-color: transparent;/*覆盖原背景颜色，设置成透明 */
+      background-color: transparent; /*覆盖原背景颜色，设置成透明 */
       border-radius: 95px;
       border: 0;
       box-shadow: 0 0 0 0px;
