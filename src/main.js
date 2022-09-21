@@ -7,6 +7,7 @@ import zhCn from 'element-plus/es/locale/lang/zh-cn';
 import '@/styles/index.scss'
 import SvgIcon from '@/icons'
 import store from './store'
+import '@/router/permission'
 
 const app = createApp(App)
 SvgIcon(app)
