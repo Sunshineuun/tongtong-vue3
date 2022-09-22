@@ -10,7 +10,7 @@ const routes = [
         path: '/',
         name: '/',
         component: () => import('../layout'),
-        // redirect: '/',
+        redirect: '/users',
         children: [
             {
                 path: 'users',
