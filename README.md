@@ -31,6 +31,7 @@ npm i element-plus --save-dev
 npm i svg-sprite-loader@6.0.9 --save-dev
 npm i axios --save-dev
 npm i vuex --save-dev
+npm i @element-plus/icons-vue --save-dev
 
 
 ## Element Plus
