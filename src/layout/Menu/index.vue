@@ -3,25 +3,37 @@
       active-text-color="#ffffff"
       background-color="#304156"
       class="el-menu-vertical-demo"
-      default-active="/users"
+      :default-active="defaultActive"
       text-color="#fff"
       router
       unique-opened
       @open="handleOpen"
       @close="handleClose"
+      :collapse="!$store.getters.sidebarType"
   >
     <el-sub-menu
         :index="item.id"
-        v-for="(item) in menusList"
+        v-for="(item, index) in menusList"
         :key="item.id"
     >
       <template #title>
         <el-icon>
-          <location/>
+          <component :is="iconList[index]"></component>
         </el-icon>
         <span>{{ item.authName }}</span>
       </template>
-      <el-menu-item :index="`/`+it.path" v-for="it in item.children" :key="it.id">{{ it.authName }}</el-menu-item>
+      <el-menu-item
+          :index="`/`+it.path"
+          v-for="it in item.children"
+          :key="it.id"
+          @click="savePath(it.path)">
+        <template #title>
+          <el-icon>
+            <component :is="icon"></component>
+          </el-icon>
+          <span>{{ it.authName }}</span>
+        </template>
+      </el-menu-item>
     </el-sub-menu>
   </el-menu>
 </template>
@@ -29,6 +41,9 @@
 <script setup>
 import {menuList} from "@/api/menu";
 import {ref} from "vue";
+
+const iconList = ref(['user', 'setting', 'shop', 'tickets', 'pie-chart'])
+const icon = ref('menu')
 
 const menusList = ref([
   {
@@ -91,6 +106,7 @@ const menusList = ref([
     ]
   },
   {
+    id: 50,
     authName: '数据统计',
     children: [
       {
@@ -112,6 +128,10 @@ const handleClose = (key, keyPath) => {
   console.log(key, keyPath)
 }
 
+const defaultActive = ref(sessionStorage.getItem('path') || '/users')
+const savePath = (path) => {
+  sessionStorage.setItem('path', `/${path}`)
+}
 initMenusList();
 </script>
 
