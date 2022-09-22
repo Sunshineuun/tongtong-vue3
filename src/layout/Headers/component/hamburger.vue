@@ -1,0 +1,26 @@
+<template>
+  <div class="hamburger-container" @click="toggleClick">
+    <svg-icon :icon="icon"></svg-icon>
+  </div>
+</template>
+
+<script setup>
+import {useStore} from "vuex";
+import {computed} from "vue";
+
+const store = useStore();
+const toggleClick = () => {
+  store.commit('app/changeSidebarType');
+}
+const icon = computed(() => {
+  return store.getters.sidebarType ? 'hamburger-opened' : 'hamburger-closed';
+})
+</script>
+
+<style lang="scss">
+.hamburger-container {
+  margin-right: 16px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+</style>

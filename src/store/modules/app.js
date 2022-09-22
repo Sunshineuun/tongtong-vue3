@@ -8,12 +8,17 @@ import {setTokenTime} from "@/util/auth";
 export default {
     namespaced: true,
     state: () => ({
-        token: localStorage.getItem('token') || ''
+        token: localStorage.getItem('token') || '',
+        // 定义 sidebar 初始状态，菜单栏折叠
+        sidebarType: true
     }),
     mutations: {
         setToken(state, token) {
             state.token = token;
             localStorage.setItem('token', token)
+        },
+        changeSidebarType(state) {
+            state.sidebarType = !state.sidebarType;
         }
     },
     actions: {
@@ -21,7 +26,6 @@ export default {
             return new Promise((resolve, reject) => {
                 loginApi(userInfo)
                     .then(res => {
-                        console.log(res)
                         commit('setToken', res.token)
                         setTokenTime();
                         router.replace('/')
