@@ -8,8 +8,13 @@ import '@/styles/index.scss'
 import SvgIcon from '@/icons'
 import store from './store'
 import '@/router/permission'
+import * as ElIcon from '@element-plus/icons-vue'
 
 const app = createApp(App)
+// 将element-plus icons 注册为全局组件，并已iconName为key
+for (const iconName in ElIcon) {
+    app.component(iconName, ElIcon[iconName]);
+}
 SvgIcon(app)
 app.use(ElementPlus, {
     locale: zhCn
